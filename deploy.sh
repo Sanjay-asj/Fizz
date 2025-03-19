@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Set Docker image name, tag, and container name
-IMAGE_NAME="nadinc/docker"
+IMAGE_NAME="sanjay090/docker"
 TAG="latest"
-CONTAINER_NAME="jenkins-docker-container"
+CONTAINER_NAME="my-container"
 
 # Stop and remove any existing container with the same name
 docker stop $CONTAINER_NAME || true
