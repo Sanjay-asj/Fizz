@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "sanjaydoss/docker"          // Replace with your Docker Hub username and image name
+        IMAGE_NAME = "sanjay090/docker"          // Replace with your Docker Hub username and image name
         TAG = "latest"
         CONTAINER_NAME = "my-container"
         PORT = "3001"
@@ -28,7 +28,7 @@ pipeline {
                 stage('Login to Docker Hub') {
             steps {
                 echo "Logging into Docker Hub..."
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-sanjay', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
                 }
             }
