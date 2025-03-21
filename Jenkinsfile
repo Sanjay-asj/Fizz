@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "sanjay090/pipeline"          // Replace with your Docker Hub username and image name
+        IMAGE_NAME = "sanjay090/docker"          // Replace with your Docker Hub username and image name
         TAG = "latest"
-        CONTAINER_NAME = "my-container"
+        CONTAINER_NAME = "my-container1"
         PORT = "3001"
     }
 
