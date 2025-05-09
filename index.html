@@ -2,9 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jenkins Docker Test</title>
+    <title>Stylish Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+
+        .calculator {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+
+        .display {
+            background-color: #111;
+            color: #0f0;
+            font-size: 2em;
+            text-align: right;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            height: 50px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #444;
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #666;
+        }
+
+        .button.operator {
+            background-color: #fe9505;
+        }
+
+        .button.operator:hover {
+            background-color: #e07b00;
+        }
+
+        .button.equal {
+            background-color: #1e90ff;
+            grid-column: span 2;
+        }
+
+        .button.equal:hover {
+            background-color: #006fdc;
+        }
+
+        .button.clear {
+            background-color: #ff4d4d;
+        }
+
+        .button.clear:hover {
+            background-color: #cc0000;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello from Docker with Jenkins!</h1>
+
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button class="button clear" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="append('%')">%</button>
+            <button class="button" onclick="append('/')">÷</button>
+            <button class="button operator" onclick="append('*')">×</button>
+
+            <button class="button" onclick="append('7')">7</button>
+            <button class="button" onclick="append('8')">8</button>
+            <button class="button" onclick="append('9')">9</button>
+            <button class="button operator" onclick="append('-')">−</button>
+
+            <button class="button" onclick="append('4')">4</button>
+            <button class="button" onclick="append('5')">5</button>
+            <button class="button" onclick="append('6')">6</button>
+            <button class="button operator" onclick="append('+')">+</button>
+
+            <button class="button" onclick="append('1')">1</button>
+            <button class="button" onclick="append('2')">2</button>
+            <button class="button" onclick="append('3')">3</button>
+            <button class="button equal" onclick="calculate()">=</button>
+
+            <button class="button" onclick="append('0')">0</button>
+            <button class="button" onclick="append('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function append(value) {
+            if (display.innerText === "0" || display.innerText === "Error") {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay() {
+            display.innerText = "0";
+        }
+
+        function calculate() {
+            try {
+                display.innerText = eval(display.innerText.replace('÷', '/').replace('×', '*'));
+            } catch (e) {
+                display.innerText = "Error";
+            }
+        }
+    </script>
+
 </body>
 </html>
